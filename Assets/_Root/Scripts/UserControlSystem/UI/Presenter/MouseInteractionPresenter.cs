@@ -28,15 +28,7 @@ namespace _Root.Scripts.UserControlSystem
 
             var selectable = hits.Select(hit => hit.collider.GetComponent<ISelectable>())
                 .FirstOrDefault();
-            if (_selectedObject.CurrentValue != default)
-            {
-                _selectedObject.CurrentValue.Outline.enabled = false;
-            }
             _selectedObject.SetValue(selectable);
-            if (selectable!=default)
-            {
-                _selectedObject.CurrentValue.Outline.enabled = true;
-            }
 
             if (mainBuilding == default)
             {
