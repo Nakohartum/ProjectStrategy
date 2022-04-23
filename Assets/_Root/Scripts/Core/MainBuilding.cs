@@ -4,10 +4,9 @@ using Abstractions;
 using Outlines;
 using UnityEngine;
 
-public class MainBuilding : MonoBehaviour, IUnitProduce, ISelectable
+public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable
 {
     [Header("Spawn Settings")]
-    [SerializeField] private GameObject _unitPrefab;
     [SerializeField] private Transform _unitsParent;
     
     [field: Header("Building Stats")]
@@ -17,12 +16,10 @@ public class MainBuilding : MonoBehaviour, IUnitProduce, ISelectable
     [field: Header("Select Icon")]
     [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField] public Outline Outline { get; private set; }
-
-    public void ProduceUnit()
-    {
-        var spawnPosition = new Vector3(Random.Range(-10, 11), 0, Random.Range(-10, 11));
-        Instantiate(_unitPrefab, spawnPosition, Quaternion.identity, _unitsParent);
-    }
-
     
+    public override void ExecuteSpecificCommand(IProduceUnitCommand command)
+    {
+        Instantiate(command.UnitPrefab, new Vector3(Random.Range(-10, 11), 0, Random.Range(-10, 11)),
+            Quaternion.identity, _unitsParent);
+    }
 }
