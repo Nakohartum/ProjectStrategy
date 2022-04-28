@@ -1122,6 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3165783222660829385}
   - component: {fileID: 3165783222655123945}
+  - component: {fileID: 2348506718645150161}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1271,6 +1272,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000000014901161, y: 0.2972716, z: 0.12567535}
     m_Extent: {x: 0.43989497, y: 0.5674504, z: 0.81411386}
   m_DirtyAABB: 0
+--- !u!114 &2348506718645150161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165783222660402409}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.032075405, b: 0.032075405, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3165783222660402411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1306,7 @@ GameObject:
   - component: {fileID: 2660200061002243921}
   - component: {fileID: 6014820351321998316}
   - component: {fileID: 5873231285488680214}
-  - component: {fileID: 6583009065742150975}
+  - component: {fileID: 9009990301876371775}
   m_Layer: 0
   m_Name: Chomper
   m_TagString: Untagged
@@ -1391,7 +1410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 21300000, guid: 9908913e928c42d4f9f1891893bbc424, type: 3}
-  <Outline>k__BackingField: {fileID: 6583009065742150975}
   <MaxHealth>k__BackingField: 100
 --- !u!65 &5873231285488680214
 BoxCollider:
@@ -1404,26 +1422,22 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.8146627, y: 0.9999999, z: 1.9411693}
   m_Center: {x: 0, y: 0.57, z: 0}
---- !u!114 &6583009065742150975
+--- !u!114 &9009990301876371775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3165783222660402411}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9875c36bdd734f9b8d13627aa3e1bc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0.8773585, g: 0.11091134, b: 0.11091134, a: 1}
-  outlineWidth: 5
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  _outlineComponents:
+  - {fileID: 2348506718645150161}
 --- !u!1 &3165783222660402417
 GameObject:
   m_ObjectHideFlags: 0

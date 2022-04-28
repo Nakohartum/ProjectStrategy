@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Outlines;
 namespace Abstractions
 {
     public interface ISelectable
@@ -7,6 +6,5 @@ namespace Abstractions
         float MaxHealth { get; }
         float Health { get; }
         Sprite Icon { get; }
-        Outline Outline { get; }
     }
 }

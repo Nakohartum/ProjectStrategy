@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Abstractions;
-using Outlines;
 using UnityEngine;
 
 public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable
@@ -15,7 +14,6 @@ public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectabl
     
     [field: Header("Select Icon")]
     [field: SerializeField] public Sprite Icon { get; private set; }
-    [field: SerializeField] public Outline Outline { get; private set; }
     
     public override void ExecuteSpecificCommand(IProduceUnitCommand command)
     {

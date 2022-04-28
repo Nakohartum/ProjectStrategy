@@ -28,6 +28,31 @@ namespace UI.View
             _buttonsByExecutorType.Add(typeof(CommandExecutorBase<IProduceUnitCommand>), _produceUnitButton);
         }
 
+        public void BlockInteractions(ICommandExecutor ce)
+        {
+            UnblockAllInteractions();
+            GetButtonGameObjectByType(ce.GetType()).GetComponent<Selectable>().interactable = false;
+        }
+
+        public void UnblockAllInteractions()
+        {
+            SetInteractable(true);
+        }
+
+        private void SetInteractable(bool value)
+        {
+            _attackButton.GetComponent<Selectable>().interactable = value;
+            _moveButton.GetComponent<Selectable>().interactable = value;
+            _patrolButton.GetComponent<Selectable>().interactable = value;
+            _stopButton.GetComponent<Selectable>().interactable = value;
+            _produceUnitButton.GetComponent<Selectable>().interactable = value;
+        }
+
+        private Button GetButtonGameObjectByType(Type executorInstanceType)
+        {
+            return _buttonsByExecutorType.First(type => type.Key.IsAssignableFrom(executorInstanceType)).Value;
+        }
+        
         public void MakeLayout(IEnumerable<ICommandExecutor> commandExecutors)
         {
             foreach (ICommandExecutor commandExecutor in commandExecutors)
