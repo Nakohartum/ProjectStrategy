@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8703d012e0b84f06b585f77f06cbc430, type: 3}
-  m_Name: Vector3Value
+  m_Script: {fileID: 11500000, guid: f5f7f4c8c7b9464faa982cb71c895bf5, type: 3}
+  m_Name: AttackableValue
   m_EditorClassIdentifier: 

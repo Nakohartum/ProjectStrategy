@@ -4,7 +4,7 @@ using UnityEngine;
 namespace _Root.Scripts.UserControlSystem
 {
     [CreateAssetMenu(fileName = nameof(Vector3Value), menuName = "Configs/"+nameof(Vector3Value), order = 0)]
-    public class Vector3Value : ScriptableObject
+    public class Vector3Value : ValueObjectBase<Vector3>
     {
         public Vector3 CurrentValue { get; private set; }
         public Action<Vector3> OnNewValue;

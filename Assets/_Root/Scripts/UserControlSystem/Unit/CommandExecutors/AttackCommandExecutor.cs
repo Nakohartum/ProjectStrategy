@@ -7,7 +7,7 @@ namespace _Root.Scripts.Core.Unit
     {
         public override void ExecuteSpecificCommand(IAttackCommand command)
         {
-            Debug.Log($"Attacked");
+            Debug.Log($"{name} attacked {command.Target}");
         }
     }
 }

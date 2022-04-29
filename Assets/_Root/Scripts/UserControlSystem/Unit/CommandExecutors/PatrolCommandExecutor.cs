@@ -7,7 +7,7 @@ namespace _Root.Scripts.Core.Unit
     {
         public override void ExecuteSpecificCommand(IPatrolCommand command)
         {
-            Debug.Log($"Patrolled");
+            Debug.Log($"{name} patrolling from {command.From} to {command.To}");
         }
     }
 }

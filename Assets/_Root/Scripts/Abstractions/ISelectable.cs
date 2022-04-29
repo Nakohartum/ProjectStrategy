@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using _Root.Scripts.Abstractions;
+using UnityEngine;
 namespace Abstractions
 {
-    public interface ISelectable
+    public interface ISelectable : IHealth
     {
-        float MaxHealth { get; }
-        float Health { get; }
+        Transform PivotPoint { get; }
         Sprite Icon { get; }
     }
 }

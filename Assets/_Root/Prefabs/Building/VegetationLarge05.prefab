@@ -253,11 +253,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2521266837060354788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa83aa98d4142d99730cfa4dcb94210, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0.28370172, g: 1, b: 0.02264148, a: 1}
+  outlineColor: {r: 0, g: 1, b: 0.085513115, a: 1}
   outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
@@ -338,9 +338,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae0c5f3f219b7146b4afdc57f6bcb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitsParent: {fileID: 0}
+  _unitsParent: {fileID: 2521266837060263622}
   <MaxHealth>k__BackingField: 0
   <Health>k__BackingField: 0
+  <PivotPoint>k__BackingField: {fileID: 0}
   <Icon>k__BackingField: {fileID: 0}
 --- !u!65 &6430668906737143552
 BoxCollider:
