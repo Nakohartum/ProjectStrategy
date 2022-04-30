@@ -1,4 +1,5 @@
 ﻿using System;
+using _Root.Scripts.Core.Unit;
 using _Root.Scripts.UserControlSystem.CommandCreator;
 using Abstractions;
 using UnityEngine;
@@ -40,6 +41,13 @@ namespace _Root.Scripts.UserControlSystem
                 command => ExecuteCommandWrapper(commandExecutor, command));
             _patroller.ProccesCommandExecutor(commandExecutor,
                 command => ExecuteCommandWrapper(commandExecutor, command));
+        }
+
+        public void OnRightMouseButtonClick(ISelectable selectable)
+        {
+            var res = (selectable as Component).GetComponent<MoveCommandExecutor>();
+            _mover.ProccesCommandExecutor(res,
+                command => ExecuteCommandWrapper(res, command));
         }
 
         public void ExecuteCommandWrapper(ICommandExecutor commandExecutor, object command)

@@ -7,9 +7,7 @@ namespace _Root.Scripts.Core.Unit
     {
         [field: Header("Unit characteristics")]
         [field: SerializeField] public Sprite Icon { get; private set; }
-
         [field: SerializeField] public Transform PivotPoint { get; private set; }
-
         [field: SerializeField] public float MaxHealth { get; private set; }
         public float Health { get; private set; } = 100;
     }

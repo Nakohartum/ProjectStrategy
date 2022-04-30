@@ -25,6 +25,7 @@ namespace _Root.Scripts.UserControlSystem
             bool isSelected = selected != null;
             _selectedImage.enabled = isSelected;
             _healthSlider.gameObject.SetActive(isSelected);
+            
             _text.enabled = isSelected;
             if (isSelected)
             {

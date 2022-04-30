@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using _Root.Scripts.Abstractions;
+using _Root.Scripts.Core.Unit;
 using Abstractions;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 namespace _Root.Scripts.UserControlSystem
 {
@@ -13,7 +15,7 @@ namespace _Root.Scripts.UserControlSystem
         [SerializeField] private SelectableObject _selectedObject;
         [SerializeField] private AttackableValue _attackableValue;
         [SerializeField] private EventSystem _eventSystem;
-
+        [Inject] private CommandsButtonModel _commandsButtonModel;
         [SerializeField] private Vector3Value _groundClicksRMB;
         [SerializeField] private Transform _groundTransform;
 
@@ -54,6 +56,15 @@ namespace _Root.Scripts.UserControlSystem
                 else if (_groundPlane.Raycast(ray, out var enter))
                 {
                     _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
+                }
+            }
+    
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (_groundPlane.Raycast(ray, out var enter))
+                {
+                    _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
+                    _commandsButtonModel.OnRightMouseButtonClick(_selectedObject.CurrentValue);
                 }
             }
         }
