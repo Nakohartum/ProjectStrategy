@@ -7,14 +7,11 @@ namespace _Root.Scripts.UserControlSystem
     
     public abstract class ValueObjectBase<T> : ScriptableObject, IAwaitable<T>
     {
-        public class NewValueNotifier<TAwaited> : IAwaiter<TAwaited>
+        public class NewValueNotifier<TAwaited> : AwaiterBase<TAwaited>
         {
             private readonly ValueObjectBase<TAwaited> _valueObjectBase;
             private TAwaited _result;
-            private Action _continuation;
-            private bool _isCompleted;
             
-            public bool IsCompleted => _isCompleted;
 
             public NewValueNotifier(ValueObjectBase<TAwaited> valueObjectBase)
             {
@@ -29,21 +26,8 @@ namespace _Root.Scripts.UserControlSystem
                 _isCompleted = true;
                 _continuation?.Invoke();
             }
-
-            public void OnCompleted(Action continuation)
-            {
-                if (_isCompleted)
-                {
-                    continuation?.Invoke();
-                }
-                else
-                {
-                    _continuation = continuation;
-                }
-            }
-
             
-            public TAwaited GetResult() => _result;
+            public override TAwaited GetResult() => _result;
         }
         public T CurrentValue { get; private set; }
         public Action<T> OnNewValue;

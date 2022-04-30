@@ -1,4 +1,5 @@
 ﻿using System;
+using _Root.Scripts.UserControlSystem;
 using _Root.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,13 +8,9 @@ namespace _Root.Scripts.Core
 {
     public class UnitMovementStop : MonoBehaviour, IAwaitable<AsyncExtensions.Void>
     {
-        public class StopAwaiter : IAwaiter<AsyncExtensions.Void>
+        public class StopAwaiter : AwaiterBase<AsyncExtensions.Void>
         {
             private readonly UnitMovementStop _unitMovementStop;
-            private Action _continuation;
-            private bool _isCompleted;
-
-            public bool IsCompleted => _isCompleted;
 
             public StopAwaiter(UnitMovementStop unitMovementStop)
             {
@@ -27,20 +24,7 @@ namespace _Root.Scripts.Core
                 _isCompleted = true;
                 _continuation?.Invoke();
             }
-
-            public void OnCompleted(Action continuation)
-            {
-                if (_isCompleted)
-                {
-                    continuation?.Invoke();
-                }
-                else
-                {
-                    _continuation = continuation;
-                }
-            }
-
-            public AsyncExtensions.Void GetResult() => new AsyncExtensions.Void();
+            public override AsyncExtensions.Void GetResult() => new AsyncExtensions.Void();
         }
 
         public event Action OnStop;
