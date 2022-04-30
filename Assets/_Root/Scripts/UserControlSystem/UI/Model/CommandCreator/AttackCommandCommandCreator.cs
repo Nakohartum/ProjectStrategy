@@ -1,38 +1,19 @@
 ﻿using System;
+using System.Threading;
 using _Root.Scripts.Abstractions;
 using _Root.Scripts.Core.Unit;
+using _Root.Scripts.Utils;
 using Abstractions;
 using Injector;
 using Zenject;
 
 namespace _Root.Scripts.UserControlSystem.CommandCreator
 {
-    public class AttackCommandCommandCreator : CommandCreatorBase<IAttackCommand>
+    public class AttackCommandCommandCreator : CancellableCommandCreatorBase<IAttackCommand, IAttackable>
     {
-        [Inject] private AssetContext _context;
-        private Action<IAttackCommand> _creationCallback;
-
-        [Inject]
-        private void Init(AttackableValue attackableValue)
+        protected override IAttackCommand CreateCommand(IAttackable argument)
         {
-            attackableValue.OnSelected += OnNewValue;
-        }
-
-        private void OnNewValue(IAttackable attackable)
-        {
-            _creationCallback?.Invoke(_context.Inject(new AttackCommand(attackable)));
-            _creationCallback = null;
-        }
-
-        protected override void ClassSpecificCommandCreation(Action<IAttackCommand> callback)
-        {
-            _creationCallback = callback;
-        }
-
-        public override void ProcessCancel()
-        {
-            base.ProcessCancel();
-            _creationCallback = null;
+            return new AttackCommand(argument);
         }
     }
 }

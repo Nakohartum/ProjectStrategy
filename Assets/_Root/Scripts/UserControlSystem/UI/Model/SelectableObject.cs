@@ -8,14 +8,6 @@ namespace _Root.Scripts.UserControlSystem
 
     public class SelectableObject : ValueObjectBase<ISelectable>
     {
-        public ISelectable CurrentValue { get; private set; }
-
-        public Action<ISelectable> OnSelected;
-
-        public void SetValue(ISelectable value)
-        {
-            CurrentValue = value;
-            OnSelected?.Invoke(value);
-        }
+        
     }
 }
