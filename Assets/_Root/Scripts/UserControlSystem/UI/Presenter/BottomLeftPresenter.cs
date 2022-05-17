@@ -1,8 +1,10 @@
 ﻿using System;
 using Abstractions;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace _Root.Scripts.UserControlSystem
 {
@@ -13,11 +15,11 @@ namespace _Root.Scripts.UserControlSystem
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private Image _sliderBackground;
         [SerializeField] private Image _sliderFillImage;
-        [SerializeField] private SelectableObject _selectableObject;
+        [Inject] private IObservable<ISelectable> _selectableObject;
 
         private void Start()
         {
-            _selectableObject.OnNewValue += OnSelected;
+            _selectableObject.Subscribe(OnSelected);
         }
 
         private void OnSelected(ISelectable selected)

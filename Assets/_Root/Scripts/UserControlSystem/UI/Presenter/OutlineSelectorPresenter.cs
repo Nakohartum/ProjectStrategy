@@ -2,19 +2,21 @@
 using Abstractions;
 using PlasticPipe.PlasticProtocol.Client;
 using UI.View;
+using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace _Root.Scripts.UserControlSystem.UI.Presenter
 {
     public class OutlineSelectorPresenter : MonoBehaviour
     {
-        [SerializeField] private SelectableObject _selectableObject;
+        [Inject] private IObservable<ISelectable> _selectableObject;
         private OutlineSelector[] _outlineSelectors;
         private ISelectable _currentSelectable;
 
         private void Start()
         {
-            _selectableObject.OnNewValue += OnSelected;
+            _selectableObject.Subscribe(OnSelected);
         }
 
         private void OnSelected(ISelectable selectable)

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Root.Scripts.Core.Unit;
 using Abstractions;
-using Injector;
 using UI.View;
+using UniRx;
 using UnityEngine;
-using UserControl;
 using Zenject;
 
 
@@ -13,7 +11,7 @@ namespace _Root.Scripts.UserControlSystem.UI.Presenter
 {
     public class CommandsButtonPresenter : MonoBehaviour
     {
-        [SerializeField] private SelectableObject _selectable;
+        [Inject] private IObservable<ISelectable> _selectable;
         [SerializeField] private CommandButtonsView _view;
         [Inject] private CommandsButtonModel _model;
         private ISelectable _currentSelectable;
@@ -25,8 +23,7 @@ namespace _Root.Scripts.UserControlSystem.UI.Presenter
             _model.OnCommandCancel += _view.UnblockAllInteractions;
             _model.OnCommandAccepted += _view.BlockInteractions;
 
-            _selectable.OnNewValue += OnSelected;
-            OnSelected(_selectable.CurrentValue);
+            _selectable.Subscribe(OnSelected);
         }
 
         private void OnSelected(ISelectable selectable)

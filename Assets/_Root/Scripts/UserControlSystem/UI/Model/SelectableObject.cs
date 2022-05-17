@@ -6,7 +6,7 @@ namespace _Root.Scripts.UserControlSystem
 {
     [CreateAssetMenu(fileName = nameof(SelectableObject), menuName = "Config/"+nameof(SelectableObject))]
 
-    public class SelectableObject : ValueObjectBase<ISelectable>
+    public class SelectableObject : StatefulValueObjectBase<ISelectable>
     {
         
     }

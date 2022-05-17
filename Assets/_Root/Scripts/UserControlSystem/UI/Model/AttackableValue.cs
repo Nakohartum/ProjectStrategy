@@ -5,7 +5,7 @@ using UnityEngine;
 namespace _Root.Scripts.UserControlSystem
 {
     [CreateAssetMenu(fileName = nameof(AttackableValue), menuName = "Configs/"+nameof(AttackableValue), order = 0)]
-    public class AttackableValue : ValueObjectBase<IAttackable>
+    public class AttackableValue : StatelessValueObjectBase<IAttackable>
     {
         
     }

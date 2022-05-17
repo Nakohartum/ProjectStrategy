@@ -3,6 +3,7 @@ using System.Linq;
 using _Root.Scripts.Abstractions;
 using _Root.Scripts.Core.Unit;
 using Abstractions;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
@@ -21,34 +22,28 @@ namespace _Root.Scripts.UserControlSystem
 
         private Plane _groundPlane;
 
-        private void Start()
+
+        [Inject]
+        private void Init()
         {
             _groundPlane = new Plane(_groundTransform.up, 0);
-        }
-
-        private void Update()
-        {
-            if (!Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
-            {
-                return;
-            }
-
-            if (_eventSystem.IsPointerOverGameObject())
-            {
-                return;
-            }
-
-            var ray = _camera.ScreenPointToRay(Input.mousePosition);
-            var hits = Physics.RaycastAll(ray);
-            if (Input.GetMouseButtonUp(0))
+            var allStreams = Observable.EveryUpdate().Where(_ => !_eventSystem.IsPointerOverGameObject());
+            var rightClicks = allStreams.Where(_ => Input.GetMouseButtonDown(1));
+            var leftClicks = allStreams.Where(_ => Input.GetMouseButtonDown(0));
+            var leftMouseRay = leftClicks.Select(_ => _camera.ScreenPointToRay(Input.mousePosition));
+            var rightMouseRay = rightClicks.Select(_ => _camera.ScreenPointToRay(Input.mousePosition));
+            var leftHits = leftMouseRay.Select(ray => Physics.RaycastAll(ray));
+            var rightHits = rightMouseRay.Select(ray =>(ray, Physics.RaycastAll(ray)));
+            leftHits.Subscribe(hits =>
             {
                 if (Hitted<ISelectable>(hits, out var selectable))
                 {
                     _selectedObject.SetValue(selectable);
                 }
-            }
-            else
+            });
+            rightHits.Subscribe(data =>
             {
+                var (ray, hits) = data;
                 if (Hitted<IAttackable>(hits, out var attackable))
                 {
                     _attackableValue.SetValue(attackable);
@@ -56,19 +51,11 @@ namespace _Root.Scripts.UserControlSystem
                 else if (_groundPlane.Raycast(ray, out var enter))
                 {
                     _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
-                }
-            }
-    
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (_groundPlane.Raycast(ray, out var enter))
-                {
-                    _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
                     _commandsButtonModel.OnRightMouseButtonClick(_selectedObject.CurrentValue);
                 }
-            }
+            });
         }
-
+       
         private bool Hitted<T>(RaycastHit[] hits, out T result) where T : class
         {
             result = default;
