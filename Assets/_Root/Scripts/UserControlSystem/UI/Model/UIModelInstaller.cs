@@ -21,8 +21,10 @@ namespace _Root.Scripts.UserControlSystem
                 .AsTransient();
             Container.Bind<CommandCreatorBase<IStopCommand>>().To<StopCommandCommandCreator>()
                 .AsTransient();
-
+            Container.Bind<float>().WithId("Chomper").FromInstance(5f);
+            Container.Bind<string>().WithId("Chomper").FromInstance("Chomper");
             Container.Bind<CommandsButtonModel>().AsTransient();
+            Container.Bind<BottomCenterModel>().AsTransient();
         }
     }
 }

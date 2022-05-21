@@ -9,9 +9,12 @@ namespace _Root.Scripts.UserControlSystem.CommandCreator
     public sealed class ProduceUnitCommandCommandCreator : CommandCreatorBase<IProduceUnitCommand>
     {
         [Inject] private AssetContext _context;
+        [Inject] private DiContainer _diContainer;
         protected override void ClassSpecificCommandCreation(Action<IProduceUnitCommand> callback)
         {
-            callback?.Invoke(_context.Inject(new ProduceUnitCommandHeir()));
+            var produceUnitCommand = _context.Inject(new ProduceUnitCommandHeir());
+            _diContainer.Inject(produceUnitCommand);
+            callback?.Invoke(produceUnitCommand);
         }
     }
 }
