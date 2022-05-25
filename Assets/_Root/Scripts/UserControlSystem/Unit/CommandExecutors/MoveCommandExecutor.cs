@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using _Root.Scripts.Utils;
 using Abstractions;
 using UnityEngine;
@@ -16,13 +17,14 @@ namespace _Root.Scripts.Core.Unit
         private int _walkTriggerHash;
         private int _idleTriggerHash;
 
-        private void Start()
+        private void Awake()
         {
             _walkTriggerHash = Animator.StringToHash("Walk");
             _idleTriggerHash = Animator.StringToHash("Idle");
         }
+        
 
-        public override async void ExecuteSpecificCommand(IMoveCommand command)
+        public override async Task ExecuteSpecificCommand(IMoveCommand command)
         {
             GetComponent<NavMeshAgent>().destination = command.Target;
             _animator.SetTrigger(_walkTriggerHash);

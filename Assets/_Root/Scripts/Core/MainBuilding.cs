@@ -13,6 +13,8 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
 {
     [Header("Spawn Settings")]
     [SerializeField] private Transform _unitsParent;
+
+    public Vector3 RallyPoint { get; set; }
     
     [field: Header("Building Stats")]
     [field: SerializeField] public float MaxHealth { get; private set; }

@@ -8,7 +8,7 @@ using Zenject;
 namespace _Root.Scripts.UserControlSystem.CommandCreator
 {
     public abstract class CancellableCommandCreatorBase<TCommand, TArgument> : CommandCreatorBase<TCommand> 
-        where TCommand : ICommand
+        where TCommand : class, ICommand
     {
         [Inject] private AssetContext _context;
         [Inject] private IAwaitable<TArgument> _awaitableArgument;

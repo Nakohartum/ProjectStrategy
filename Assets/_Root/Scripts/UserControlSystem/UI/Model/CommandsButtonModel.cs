@@ -1,4 +1,5 @@
 ﻿using System;
+using _Root.Scripts.Abstractions;
 using _Root.Scripts.Core.Unit;
 using _Root.Scripts.UserControlSystem.CommandCreator;
 using Abstractions;
@@ -18,10 +19,11 @@ namespace _Root.Scripts.UserControlSystem
         [Inject] private CommandCreatorBase<IStopCommand> _stopper;
         [Inject] private CommandCreatorBase<IMoveCommand> _mover;
         [Inject] private CommandCreatorBase<IPatrolCommand> _patroller;
+        [Inject] private CommandCreatorBase<ISetRallyPointCommand> _setRallyPoint;
 
         private bool _commandIsPending;
 
-        public void OnCommandButtonClicked(ICommandExecutor commandExecutor)
+        public void OnCommandButtonClicked(ICommandExecutor commandExecutor, ICommandsQueue queue)
         {
             if (_commandIsPending)
             {
@@ -32,27 +34,26 @@ namespace _Root.Scripts.UserControlSystem
             OnCommandAccepted?.Invoke(commandExecutor);
 
             _unitProducer.ProccesCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
+                command => ExecuteCommandWrapper(command, queue));
             _attacker.ProccesCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
+                command => ExecuteCommandWrapper(command, queue));
             _mover.ProccesCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
+                command => ExecuteCommandWrapper(command, queue));
             _stopper.ProccesCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
+                command => ExecuteCommandWrapper(command, queue));
             _patroller.ProccesCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
+                command => ExecuteCommandWrapper(command, queue));
+            _setRallyPoint.ProccesCommandExecutor(commandExecutor, 
+                command => ExecuteCommandWrapper(command, queue));
         }
 
-        public void OnRightMouseButtonClick(ISelectable selectable)
+        public void ExecuteCommandWrapper(object command, ICommandsQueue queue)
         {
-            var res = (selectable as Component).GetComponent<MoveCommandExecutor>();
-            _mover.ProccesCommandExecutor(res,
-                command => ExecuteCommandWrapper(res, command));
-        }
-
-        public void ExecuteCommandWrapper(ICommandExecutor commandExecutor, object command)
-        {
-            commandExecutor.ExecuteCommand(command);
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                queue.Clear();
+            }
+            queue.EnqueCommand(command);
             _commandIsPending = false;
             OnCommandSent?.Invoke();
         }

@@ -1,9 +1,10 @@
-﻿using Abstractions;
+﻿using _Root.Scripts.Abstractions;
+using Abstractions;
 using UnityEngine;
 
 namespace _Root.Scripts.Core.Unit
 {
-    public class MainUnit : MonoBehaviour, ISelectable
+    public class MainUnit : MonoBehaviour,ISelectable, IUnit
     {
         [field: Header("Unit characteristics")]
         [field: SerializeField] public Sprite Icon { get; private set; }

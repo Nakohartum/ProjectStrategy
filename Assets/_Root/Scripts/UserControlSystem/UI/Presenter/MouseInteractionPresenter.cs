@@ -51,7 +51,6 @@ namespace _Root.Scripts.UserControlSystem
                 else if (_groundPlane.Raycast(ray, out var enter))
                 {
                     _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
-                    _commandsButtonModel.OnRightMouseButtonClick(_selectedObject.CurrentValue);
                 }
             });
         }
