@@ -33,6 +33,8 @@ namespace _Root.Scripts.UserControlSystem.Unit.CommandExecutors
                 RemoveTaskAtIndex(0);
                 var unit = _diContainer.InstantiatePrefab(innerTask.UnitPrefab, transform.position, 
                     Quaternion.identity, _unitsParent);
+                var fraction = unit.GetComponent<FractionMember>();
+                fraction.FractionID = GetComponent<FractionMember>().FractionID;
                 var queue = unit.GetComponent<ICommandsQueue>();
                 var mainBuilding = GetComponent<MainBuilding>();
                 queue.EnqueCommand(new MoveCommand(mainBuilding.RallyPoint));

@@ -7,6 +7,7 @@ namespace _Root.Scripts.UserControlSystem
     {
         protected Action _continuation;
         protected bool _isCompleted;
+        private T _result;
         public bool IsCompleted => _isCompleted;
         public void OnCompleted(Action continuation)
         {
@@ -20,7 +21,13 @@ namespace _Root.Scripts.UserControlSystem
             }
         }
 
+        protected void OnWaitFinish(T result)
+        {
+            _result = result;
+            _isCompleted = true;
+            _continuation?.Invoke();
+        }
         
-        public abstract T GetResult();
+        public T GetResult() => _result;
     }
 }

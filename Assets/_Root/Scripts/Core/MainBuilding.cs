@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
+public class MainBuilding : MonoBehaviour, ISelectable, IAttackable, IHealth
 {
     [Header("Spawn Settings")]
     [SerializeField] private Transform _unitsParent;
@@ -23,5 +23,19 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable
     [field: SerializeField] public Transform PivotPoint { get; private set; }
     [field: Header("Select Icon")]
     [field: SerializeField] public Sprite Icon { get; private set; }
+
+    public void RecieveDamage(int damage)
+    {
+        if (Health <= 0)
+        {
+            return;
+        }
+
+        Health -= damage;
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 }

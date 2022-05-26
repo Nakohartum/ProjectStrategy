@@ -23,10 +23,8 @@ namespace _Root.Scripts.Core
             private void OnStop()
             {
                 _unitMovementStop.OnStop -= OnStop;
-                _isCompleted = true;
-                _continuation?.Invoke();
+                OnWaitFinish(new AsyncExtensions.Void());
             }
-            public override AsyncExtensions.Void GetResult() => new AsyncExtensions.Void();
         }
 
         public event Action OnStop;

@@ -22,12 +22,8 @@ namespace _Root.Scripts.UserControlSystem
             private void OnNewValue(TAwaited obj)
             {
                 _valueObjectBase.OnNewValue -= OnNewValue;
-                _result = obj;
-                _isCompleted = true;
-                _continuation?.Invoke();
+                OnWaitFinish(obj);
             }
-            
-            public override TAwaited GetResult() => _result;
         }
         public T CurrentValue { get; private set; }
         public Action<T> OnNewValue;

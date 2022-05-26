@@ -1314,6 +1314,8 @@ GameObject:
   - component: {fileID: 1457843969628719596}
   - component: {fileID: 6382008447624049691}
   - component: {fileID: 2124581184672504624}
+  - component: {fileID: 1664546187}
+  - component: {fileID: 1664546189}
   m_Layer: 0
   m_Name: Chomper
   m_TagString: Untagged
@@ -1368,6 +1370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad129052b7147c0a419fafd900fb3a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 3165783222651060009}
+  _stopCommandExecutor: {fileID: 3782428079334609289}
 --- !u!114 &3782428079334609289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,8 +1424,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 21300000, guid: 9908913e928c42d4f9f1891893bbc424, type: 3}
+  <Damage>k__BackingField: 25
   <PivotPoint>k__BackingField: {fileID: 3165783222660829387}
   <MaxHealth>k__BackingField: 100
+  _animator: {fileID: 3165783222651060009}
+  _stopCommand: {fileID: 3782428079334609289}
 --- !u!65 &5873231285488680214
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1514,6 +1521,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: -5511695369420313014}
+  - {fileID: 1664546189}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
@@ -1555,6 +1563,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 834e114b6bd54a389774da38a246aeba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1664546187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165783222660402411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541bec976092403197d6f305b497c783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FractionID>k__BackingField: 0
+--- !u!114 &1664546189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165783222660402411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851ed09bfb384c16bbeb8ff4252cd81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3165783222660402417
