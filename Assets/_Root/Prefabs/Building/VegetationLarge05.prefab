@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 2521266837060263620}
   - component: {fileID: 2521266837057396454}
   - component: {fileID: 2521266837058362406}
-  - component: {fileID: 8591054736582995200}
+  - component: {fileID: 810338820}
   m_Layer: 0
   m_Name: VegetationLarge05_LOD00
   m_TagString: Untagged
@@ -244,7 +244,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8591054736582995200
+--- !u!114 &810338820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0, g: 1, b: 0.085513115, a: 1}
+  outlineColor: {r: 0, g: 1, b: 0.2180419, a: 1}
   outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
@@ -279,6 +279,9 @@ GameObject:
   - component: {fileID: -4452492732582687774}
   - component: {fileID: 372087391409813776}
   - component: {fileID: -8742634456132715155}
+  - component: {fileID: 399459231}
+  - component: {fileID: 399459232}
+  - component: {fileID: 399459233}
   m_Layer: 0
   m_Name: VegetationLarge05
   m_TagString: Untagged
@@ -293,7 +296,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2521266837060354790}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.97, y: 0, z: -7.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -342,12 +345,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae0c5f3f219b7146b4afdc57f6bcb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitsParent: {fileID: 2521266837060263622}
-  <MaxHealth>k__BackingField: 0
-  <Health>k__BackingField: 0
-  <MilliSecondsToSpawn>k__BackingField: 0
+  _unitsParent: {fileID: 0}
+  <MaxHealth>k__BackingField: 1000
+  <Health>k__BackingField: 1000
+  <MilliSecondsToSpawn>k__BackingField: 2
   <PivotPoint>k__BackingField: {fileID: 0}
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 712262adeebd1924cad36360993fca8a, type: 3}
 --- !u!65 &6430668906737143552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -374,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outlineComponents:
-  - {fileID: 8591054736582995200}
+  - {fileID: 810338820}
 --- !u!114 &5721181039555781049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,3 +432,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b43738ae3043dcbbb7203169e83639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &399459231
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2521266837060354790}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &399459232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2521266837060354790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a6936668fa42d1ba2cda028b00cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitsParent: {fileID: 0}
+  _maximumUnitsInQueue: 6
+--- !u!114 &399459233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2521266837060354790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541bec976092403197d6f305b497c783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fractionID: 0
